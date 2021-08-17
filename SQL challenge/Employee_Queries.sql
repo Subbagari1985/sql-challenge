@@ -12,6 +12,12 @@ from Employees
 where hire_date BETWEEN '1986-01-01' AND '1986-12-31';
 
 -- 3. List the manager of each department with the following information: department number, department name, the manager's employee number, last name, first name.
+Select d.dept_no as Department_No, d.dept_name as Department_Name, e.emp_no as Manager_Employee_No , e.last_name as Last_Name, e.first_name as First_Name
+from Employees e
+JOIN dept_manager as dm
+on e.emp_no = dm.emp_no
+JOIN departments d
+on d.dept_no = dm.dept_no
 
 -- 4. List the department of each employee with the following information: employee number, last name, first name, and department name.
 Select e.emp_no as Employee_No , e.last_name as Last_Name, e.first_name as First_Name,d.dept_name as Department_Name
@@ -51,6 +57,8 @@ OR d.dept_name = 'Development'
 select count(last_name) as "Count of Last Name", last_name as "Last Name"
 from employees 
 group by last_name
+order by "Count of Last Name" desc
+-- if you want to see the results in the descending order by last names, use (order by last_name desc)
 
 
 
